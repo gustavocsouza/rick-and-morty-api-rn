@@ -8,8 +8,9 @@ const isAndroid = Platform.OS === "android"
 
 export const Container = styled.SafeAreaView`
   margin-top: ${isAndroid ? `${statusBarHeight}px` : 0};
+  padding: 20px 8px;
 `;
 
-export const CharacterContainer = styled.View`
-  flex-direction: row;
+export const ItemSeparator = styled.View`
+  height: 10px;
 `;

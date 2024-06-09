@@ -1,8 +1,12 @@
-import { Text, ActivityIndicator, FlatList, View, Image } from "react-native";
-import { CharacterContainer, Container } from "./styles";
-import axios from "axios";
+import { ActivityIndicator, FlatList } from "react-native";
 import { useEffect, useState } from "react";
+import axios from "axios";
+
 import { Character } from "../interfaces";
+
+import { CharacterCard } from "../components/CharacterCard";
+
+import { Container, ItemSeparator } from "./styles";
 
 export function Main() {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,17 +33,14 @@ export function Main() {
       {!isLoading && (
         <FlatList
           data={characters}
+          numColumns={3}
+          keyExtractor={(item)=> item.id.toString()}
+          ItemSeparatorComponent={ItemSeparator}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item: character }) => (
-            <CharacterContainer>
-              <Image
-                width={50}
-                height={50}
-                source={{
-                  uri: character.image
-                }}
-              />
-              <Text>{character.name}</Text>
-            </CharacterContainer>
+            <CharacterCard
+              character={character}
+            />
           )}
         />
       )}
