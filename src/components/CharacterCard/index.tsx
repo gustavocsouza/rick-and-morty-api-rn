@@ -6,11 +6,14 @@ import { CharacterContainer, CharacterImage, CharacterInfo } from "./styles";
 
 interface CharacterCardProps {
   character: Character;
+  onOpenCharacterModal: () => void;
 }
 
-export function CharacterCard({ character }: CharacterCardProps) {
+export function CharacterCard({ character, onOpenCharacterModal }: CharacterCardProps) {
   return (
-    <CharacterContainer>
+    <CharacterContainer
+      onPress={onOpenCharacterModal}
+    >
       <CharacterImage
         source={{
           uri: character.image
@@ -20,7 +23,9 @@ export function CharacterCard({ character }: CharacterCardProps) {
         <Text
           size={16}
           weight={600}
-        >{character.name}</Text>
+        >
+          {character.name}
+        </Text>
         <Text>{character.status}</Text>
         <Text>{character.species}</Text>
         <Pressable
